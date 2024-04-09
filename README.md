@@ -1,39 +1,47 @@
-# SproutComp server
 
-This repo contain de source code of the Sprout Company system 👇
+# SproutComp Server 
 
-> 🎯 Own webpage [here](https://www.sproutcomp.pro)
+[![Webpack testing](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/webpack.yml/badge.svg)](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/webpack.yml)
+[![Website status](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/website_request.yml/badge.svg)](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/website_request.yml)
 
-## Setup
+About
+-----
 
-- Install dependencies and client dependencies:
+This repository contains the source code for the SproutComp server. The server is built using Node.js and Express, and it uses a private MongoDB database host for data storage. 
+The server is responsible for handling user authentication and data persistence.
 
-  ```bash
-  npm install 
-  npm run client_install
-  ```
-  
-- Create a [`.env`](./.env.example) file or use another environment vars setter
-    
-- Run project!
+Setup
+-----
 
-  ```bash
-  npm run dev
-  ```
+1. Install dependencies and client dependencies:
 
-## Production 
+   ```bash
+   npm install 
+   npm run client_install
+   ```
 
-This is just a feature of the owners to launch the server.
+2. Create a `.env` file using the `.env.example` file as a template, or use another environment variable setter.
 
-- Transpile and prepare the app
-  ```bash
-  npm run build
-  ```
+3. Run the project:
 
-- Run production !
-  ```bash
-  npm start
-  ```
+   ```bash
+   npm run dev
+   ```
 
----
-❤️ By SproutComp team
+Production
+----------
+
+To prepare the app for production, run:
+
+```bash
+npm run build
+```
+
+Then, to start the production server, run:
+
+```bash
+npm start
+```
+
+-----
+Made with ❤️ by the SproutComp team.

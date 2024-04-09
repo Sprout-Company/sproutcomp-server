@@ -10,7 +10,7 @@ This repo contain de source code of the Sprout Company system 👇
 
   ```bash
   npm install 
-  cd client && npm install
+  npm run client_install
   ```
   
 - Create a [`.env`](./.env.example) file or use another environment vars setter

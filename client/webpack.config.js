@@ -21,6 +21,7 @@ module.exports = {
     compress: true,
     hot: true,
     liveReload: true,
+    historyApiFallback: true,
   },
 
   // html export

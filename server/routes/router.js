@@ -9,7 +9,7 @@ router.use("/auth" , auth);
 
 // Serve website routes
 router.use(express.static(config.CLIENT_DIR));
-router.get("*", (req, res) => {
+router.use((req, res) => {
   res.sendFile(config.CLIENT_DIR + "/index.html");
   res.end();
 });

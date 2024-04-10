@@ -6,7 +6,6 @@ router.get('/referral/:referralId', (req, res) => {
     const referralId = req.params.referralId;
     req.session.referralId = referralId;
     res.redirect('/index');
-    res.end();
 });
 
 

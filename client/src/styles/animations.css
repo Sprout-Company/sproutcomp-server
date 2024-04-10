@@ -1,0 +1,14 @@
+
+.animate-point-right {
+  animation: point-right .5s ease infinite alternate;
+  
+}
+
+@keyframes point-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(.7rem);
+  }
+}

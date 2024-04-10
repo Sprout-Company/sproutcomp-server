@@ -1,0 +1,19 @@
+
+.border-l-current {
+  padding-left: 1rem;
+  border-left: solid currentcolor .5rem;
+}
+
+.bg-primary {
+  background: var(--primary-bg);
+}
+.bg-body {
+  background: var(--body-bg);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+.text-body {
+  color: var(--body-color);
+}

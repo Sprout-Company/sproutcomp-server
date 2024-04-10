@@ -1,4 +1,4 @@
-name: Webpack testing
+name: Webpack CI
 
 on:
   push:

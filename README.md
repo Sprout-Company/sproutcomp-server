@@ -1,7 +1,6 @@
 
 # SproutComp Server 
-
-[![Webpack testing](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/webpack.yml/badge.svg)](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/webpack.yml)
+[![Webpack CI](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/webpack.yml/badge.svg)](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/webpack.yml)
 [![Website status](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/website_request.yml/badge.svg)](https://github.com/Sprout-Company/sproutcomp-server/actions/workflows/website_request.yml)
 
 About

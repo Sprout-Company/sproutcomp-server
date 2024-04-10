@@ -28,6 +28,8 @@ Setup
    npm run dev
    ```
 
+4. Test webpage is hosted in `https://localhost:3001`
+
 Production
 ----------
 

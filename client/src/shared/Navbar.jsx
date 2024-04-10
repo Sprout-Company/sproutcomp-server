@@ -1,11 +1,13 @@
 
-export default function Navbar ({children}) {
+export default function Navbar ({className, children}) {
   return (
     <div
-      className='
+      className={`
         flex-shrink-0 p-4 w-100 
         text-primary font-bold 
-        bg-primary shadow-lg'
+        bg-primary shadow-lg
+        ${className}
+      `}
     >
       { children }
     </div>

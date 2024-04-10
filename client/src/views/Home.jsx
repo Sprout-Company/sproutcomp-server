@@ -3,7 +3,7 @@ import {
   useNavigate,
   Link,
 } from 'react-router-dom'
-import { FaArrowRight } from 'react-icons/fa'
+import { FaArrowRight, FaUserPlus } from 'react-icons/fa'
 
 import Navbar from '../shared/Navbar.jsx'
 import HeaderLogo from '../shared/HeaderLogo.jsx'
@@ -16,9 +16,14 @@ export default function HomeView () {
   
   return (
     <div className='h-full flex flex-col'> 
-      <Navbar>
+      <Navbar className='flex justify-between items-center'>
         <HeaderLogo className='text-2xl' redirect/>
-      <Navbar/>
+        <div 
+          className='text-xl rounded-3xl border border-2 border-current p-2'
+          children={<FaUserPlus/>}
+          onClick={() => navigate('/login')}
+        />
+      </Navbar>
       
       <div className='p-5 overflow-auto flex-grow'>
         
@@ -34,8 +39,8 @@ export default function HomeView () {
           className='mt-12'
           header={
             <span className='flex flex-wrap'> 
-              Listo <div className='transform rotate-45 translate-x-3 -translate-y-1 text-red-900'> ? </div> 
-              Juguemos <div className='transform rotate-45 translate-x-3 translate-y-1 text-cyan-900'> !! </div>  
+              Listo <span className='mr-3 text-red-900'> ? </span> 
+              Juguemos <span className='  text-cyan-900'> !! </span>  
             </span>
           }
           body='Unete a nosotros y empieza a ganar dinero jugando !'

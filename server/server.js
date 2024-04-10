@@ -50,6 +50,14 @@ passport.deserializeUser(async function (id, done) {
 //Enrutamiento
 app.use(router);
 
+
+// Serve website routes
+app.use(express.static(config.CLIENT_DIR));
+app.get("*", (req, res) => {
+  res.sendFile(config.CLIENT_DIR + "/index.html");
+});
+
+
 //socketing
 const io = require("socket.io")(server, {
     cors: {

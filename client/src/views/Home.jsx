@@ -5,7 +5,8 @@ import {
 } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 
-import BottomBar from '../shared/BottomBar.jsx'
+import Navbar from '../shared/Navbar.jsx'
+import HeaderLogo from '../shared/HeaderLogo.jsx'
 
 /**
  * Home page
@@ -15,6 +16,10 @@ export default function HomeView () {
   
   return (
     <div className='h-full flex flex-col'> 
+      <Navbar>
+        <HeaderLogo className='text-2xl' redirect/>
+      <Navbar/>
+      
       <div className='p-5 overflow-auto flex-grow'>
         
         <HeaderAndBody
@@ -51,7 +56,6 @@ export default function HomeView () {
         </div>
         
       </div>
-      <BottomBar/>
     </div>
   )
 }

@@ -17,7 +17,10 @@ export default function LoginView () {
       
       {/* form */}
       <div className='z-1 relative flex flex-col items-center'>
-        <HeaderLogo className='text-3xl' />
+        <HeaderLogo 
+          className='text-3xl'
+          redirect
+        />
         <h1 className='m-3 text-lg'> Iniciar sesión </h1>
         <AuthButton type='google' />
         <AuthButton type='facebook' /> 

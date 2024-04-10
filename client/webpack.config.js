@@ -13,6 +13,7 @@ module.exports = {
   output: {
     path: CLIENT_DIR,
     filename: 'bundle.js',
+    publicPath: '/',
   },
 
   // if start a dev server

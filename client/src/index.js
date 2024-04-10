@@ -3,8 +3,11 @@ import React from 'react';
 import eruda from 'eruda'
 import { createRoot } from 'react-dom/client';
 
+import './styles/theme.css' 
 import './styles/main.css'
-import 'bootstrap/dist/css/bootstrap.css'
+import './styles/font.css'
+import './styles/utils.css' 
+import './styles/animations.css' 
 
 import App from  './App.jsx'
 

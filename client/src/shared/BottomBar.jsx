@@ -1,6 +1,4 @@
 
-import Fa from 'react'
-
 export default function BottomBar ({children}) {
   return (
     <div

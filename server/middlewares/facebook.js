@@ -10,11 +10,10 @@ passport.use("facebook", new FacebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID,
   clientSecret: process.env.FACEBOOK_APP_SECRET,
   callbackURL: config.URL + "/auth/facebook/callback",
-  passReqToCallback: true,
   profileFields: ['id', 'displayName', 'emails'], 
   scope: ['email']
 },
-  async (req , accessToken, refreshToken, profile, cb) => {
+  async (accessToken, refreshToken, profile, cb) => {
     try {
       // Buscar un usuario existente por facebook_id
       let user = await User.findOne({ facebook_id: { $ne: null, $exists: true, $eq: profile.id } });
@@ -27,10 +26,6 @@ passport.use("facebook", new FacebookStrategy({
           email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : null
         });
 
-        // Verificar si hay un ID de referido almacenado en la sesión del usuario
-        if (req.session && req.session.referralId) {
-          user.referredBy = req.session.referralId;
-        }
         await user.save();
 
         if (user) {

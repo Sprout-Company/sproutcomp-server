@@ -70,7 +70,7 @@ io.use(function (socket, next) {
     sessionMiddleware(socket.request, {}, next);
 });
 
-
+require("./engine/socket.js")(io);
 
 // Iniciar el servidor y escuchar en el puerto especificado
 server.listen(config.PORT, () => {

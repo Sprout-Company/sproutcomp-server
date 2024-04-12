@@ -5,7 +5,13 @@ const config = require("../../../config.js");
 router.get('/referral/:referralId', (req, res) => {
     const referralId = req.params.referralId;
     req.session.referralId = referralId;
-    res.redirect('/index');
+    res.redirect('/');
+});
+
+router.get('/telegram/:telegramid' , (req , res) => {
+    const telegramid = req.params.telegramid;
+    req.session.telegramId = telegramid;
+    res.redirect('/');
 });
 
 

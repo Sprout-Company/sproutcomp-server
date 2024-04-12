@@ -9,7 +9,10 @@ const v1 = async (req, res, next) => {
 
         if(data.type) switch(data.type){
             case "user_data":
-                user_data(res,data);
+                user_data(res , data);
+                break;
+            case "sproutCoins":
+                sproutCoins(res , data);
                 break;
             default:
                 res.status(200).json({status: 'ERROR' , message: 'NO_DATATYPE_FOUND' });

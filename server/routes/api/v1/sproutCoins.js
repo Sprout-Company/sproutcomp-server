@@ -9,6 +9,7 @@ module.exports = async (res , data) => {
     if(!user) return res.status(200).json({status: 'ERROR' , message: 'USER_NOT_FOUND' });
 
     const wallet = await Wallet.findOne({userId: _id});
+    if(wallet.sprout_coins + data.sproutcoins < 0) return res.status(200).json({status: 'ERROR' , message: 'NOT_ENOUGHT_COINS' });
     wallet.sprout_coins += data.sproutcoins;
     
     await wallet.save();

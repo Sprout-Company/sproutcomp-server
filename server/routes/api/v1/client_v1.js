@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 
 let host = 'localhost'; // Host por defecto
 
@@ -13,7 +13,7 @@ const makeRequest = (data) => {
         const requestData = JSON.stringify(data);
         const options = {
             hostname: host,
-            port: 3000,
+            port: 443, // Puerto HTTPS
             path: '/api/v1',
             method: 'POST',
             headers: {
@@ -22,7 +22,7 @@ const makeRequest = (data) => {
             }
         };
 
-        const req = http.request(options, (res) => {
+        const req = https.request(options, (res) => {
             let responseData = '';
             res.on('data', (chunk) => {
                 responseData += chunk;

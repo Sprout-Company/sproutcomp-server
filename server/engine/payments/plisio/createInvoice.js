@@ -1,10 +1,10 @@
 const https = require('https');
-const crypto = require('crypto');
 const config = require("./config.js");
 
 const createInvoice = (invoiceData) => {
     invoiceData.api_key = config.apiKey;
-
+    invoiceData.callback_url = config.callback_url;
+    
     return new Promise((resolve, reject) => {
         // Parámetros de la solicitud GET
         const queryParams = new URLSearchParams(invoiceData).toString();
@@ -45,7 +45,9 @@ const createInvoice = (invoiceData) => {
         // Finalizar la solicitud
         req.end();
     });
-}
+};
+
+module.exports = createInvoice;
 
 // Ejemplo de uso:
 /*
@@ -56,8 +58,7 @@ const invoiceData = {
     currency: 'BTC',
     email: 'customer@plisio.net',
     order_name: 'btc1',
-    callback_url: 'http://test.com/callback',
-    api_key: secretKey,
+    callback_url: 'http://test.com/callback'
 };
 
 createInvoice(invoiceData)

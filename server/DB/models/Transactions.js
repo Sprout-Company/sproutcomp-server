@@ -9,6 +9,7 @@ const transactionSchema = new mongoose.Schema({
     status: { type: String, default: 'pending' }, // Estado de la transacción (por defecto, pendiente)
     transactionDate: { type: Date, default: Date.now }, // Fecha y hora de la transacción
     userEmail: { type: String }, // Correo electrónico del usuario (opcional)
+    processed: {type: Boolean, default: false}
 });
 
 const Transaction = mongoose.model('Transaction', transactionSchema);

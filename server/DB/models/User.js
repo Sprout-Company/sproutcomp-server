@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema({
     google_id: { type: String, unique: true, sparse: true },
     facebook_id: { type: String, unique: true, sparse: true },
     referredBy: { type: String },
-    referrals: { type: Object }
+    referrals: { type: Object , default: [] },
+    lang: {type: String , default: "es"},
+    documents: {type: Object , default: {}},
+    createdAt: {type: Date , value: Date.now}
 });
 
 const User = mongoose.model('User', userSchema);

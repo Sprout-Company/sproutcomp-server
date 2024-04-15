@@ -29,10 +29,6 @@ passport.use("google", new GoogleStrategy({
           user.referredBy = req.session.referralId;
         }
 
-        if (req.session && req.session.telegramId) {
-          user.telegram_id = req.session.telegramId;
-        }
-
         await user.save();
 
         if (user) {
@@ -42,6 +38,11 @@ passport.use("google", new GoogleStrategy({
 
           await wallet.save();
         }
+      }
+
+      if (req.session && req.session.telegramId && !user.telegram_id) {
+        user.telegram_id = req.session.telegramId;
+        await user.save();
       }
 
       // Llamar a la función de retorno de llamada con el usuario

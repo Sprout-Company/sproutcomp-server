@@ -8,5 +8,6 @@ module.exports = async (res , data) => {
     if(!user) return res.status(200).json({status: 'ERROR' , message: 'USER_NOT_FOUND' });
 
     const wallet = await Wallet.findOne({userId: _id});
-    return res.status(200).json({status: 'SUCCESS' , message: {user: user.username , wallet} });
+    return res.status(200).json({status: 'SUCCESS' , message: {user: {
+        username: user.username , lang: user.lang , referrals: user.referrals}, wallet} });
 }

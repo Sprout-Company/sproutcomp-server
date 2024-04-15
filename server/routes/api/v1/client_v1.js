@@ -41,19 +41,19 @@ const makeRequest = (data) => {
     });
 };
 
-scApiClient.getUserData = async (id) => {
+client_v1.getUserData = async (id) => {
     const data = { type: 'user_data', id: id };
     const response = await makeRequest(data);
     return JSON.parse(response);
 };
 
-scApiClient.sproutCoins = async (id, sproutcoins) => {
+client_v1.sproutCoins = async (id, sproutcoins) => {
     const data = { type: 'sproutCoins', id: id, sproutcoins: sproutcoins };
     const response = await makeRequest(data);
     return JSON.parse(response);
 };
 
-scApiClient.balance = async (id, balance) => {
+client_v1.balance = async (id, balance) => {
     const data = { type: 'balance', id: id, balance: balance };
     const response = await makeRequest(data);
     return JSON.parse(response);

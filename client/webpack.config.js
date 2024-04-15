@@ -1,5 +1,9 @@
 
-const { CLIENT_DIR, CLIENT_PORT } = require('../config.js');
+const { 
+  CLIENT_DIR,
+  PORT: SERVER_PORT, 
+  CLIENT_PORT,
+} = require('../config.js');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -21,8 +25,20 @@ module.exports = {
     port: CLIENT_PORT,
     compress: true,
     hot: true,
+    open: true,
     liveReload: true,
     historyApiFallback: true,
+    proxy: [
+      {
+        context: [
+          '/socket.io', 
+          '/api', 
+          '/auth'
+        ],
+        target: 'http://localhost:' + SERVER_PORT,
+        secure: false,
+      }
+    ]
   },
 
   // html export
@@ -42,7 +58,7 @@ module.exports = {
         'eruda',
       */
     },
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['.*', '.js', '.jsx']
   },
 
   module: {

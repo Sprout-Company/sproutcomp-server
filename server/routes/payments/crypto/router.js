@@ -41,3 +41,5 @@ router.post('/callback', async (req, res) => {
         res.status(422).json({ message: 'Datos incorrectos' });
     }
 });
+
+module.exports = router;

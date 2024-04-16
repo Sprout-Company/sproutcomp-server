@@ -8,7 +8,7 @@ router.get('/referral/:referralId', (req, res) => {
     res.redirect('/');
 });
 
-router.get('/telegram/:telegramid' , (req , res) => {
+router.get('/telegram/:telegramid', (req, res) => {
     const telegramid = req.params.telegramid;
     req.session.telegramId = telegramid;
     res.redirect('/');
@@ -21,9 +21,9 @@ router.get('/google/callback',
         failureFlash: true
     }), (req, res) => {
         if (req.header('user-agent').indexOf('Mobile') != -1) {
-            return res.redirect('/index');
+            return res.redirect('/');
         } else {
-            return res.redirect('/index');
+            return res.redirect('/');
         }
     });
 
@@ -46,9 +46,9 @@ router.get('/facebook/callback',
             data: jwt.generate(req.user.user_id)
         });*/
         if (req.header('user-agent').indexOf('Mobile') != -1) {
-            return res.redirect('/index');
+            return res.redirect('/');
         } else {
-            return res.redirect('/index');
+            return res.redirect('/');
         }
 
     });
@@ -56,30 +56,27 @@ router.get('/facebook/callback',
 router.use('/facebook',
     passport.authenticate('facebook', {
         scope:
-            ['gaming_profile' , 'email']
+            ['gaming_profile', 'email']
     }
     ));
-
-router.post('/login',
-    (req, res, next) => {
-        passport.authenticate('local', (err, user, info) => {
-            if (err) {
-                console.log(err);
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ status: false, message: 'SERVER_ERROR' });
+        }
+        if (!user) {
+            return res.status(401).json({ status: false, message: 'WRONG_PASS' });
+        }
+        req.logIn(user, (loginErr) => {
+            if (loginErr) {
+                console.log(loginErr);
                 return res.status(500).json({ status: false, message: 'SERVER_ERROR' });
             }
-            if (!user) {
-                return res.status(401).json({ status: false, message: 'WRONG_PASS' });
-            }
-            req.logIn(user, (loginErr) => {
-                if (loginErr) {
-                    console.log(loginErr);
-                    return res.status(500).json({ status: false, message: 'SERVER_ERROR' });
-                }
-                return res.status(200).json({ status: true, message: 'LOGGED_IN' });
-            });
-        })(req, res, next);
-    }
-);
+            return res.status(200).json({ status: true, message: 'LOGGED_IN' });
+        });
+    })(req, res, next);
+});
 
 
 module.exports = router;

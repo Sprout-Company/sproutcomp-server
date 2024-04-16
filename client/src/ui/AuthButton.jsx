@@ -4,12 +4,15 @@ import facebookImg from '../assets/facebook-login.png'
 
 /**
  * Authentication button 
- * @param {'google' | 'facebook'} props.type - authentication type
+ * @param {'google' | 'facebook'} props.auth - authentication type
+ * @param {boolean} props.withoutLabel - hide the label
  */
 export default function AuthButton ({
-    children,
+    auth,
+    withoutLabel,
+    withoutRedirect,
     className,
-    type,
+    children,
     onClick,
 }) {
     
@@ -18,28 +21,36 @@ export default function AuthButton ({
     let label = null;
     
     // Google auth
-    if (type === 'google') {
+    if (auth === 'google') {
         icon = googleImg;
         label = 'Acceder con Google';
-        handleClick = () => {location.href = '/auth/google'};
+        if (!withoutRedirect) handleClick = () => {location.href = '/auth/google'};
     }
     
     // Facebook auth
-    if (type === 'facebook') {
+    if (auth === 'facebook') {
         icon = facebookImg;
         label = 'Acceder con Facebook';
-        handleClick = () => {location.href = '/auth/facebook'};
+        if(!withoutRedirect) handleClick = () => {location.href = '/auth/facebook'};
     }
     
     return (
         <div 
-            className={`${className} flex items-center bg-primary rounded-lg w-72 p-2 m-1 shadow`}
+            className={`p-2 m-1 text-lg flex items-center bg-primary rounded-lg shadow ${className}`}
             onClick={onClick || handleClick}
         >
-            {icon && <img src={icon} className='h-6 m-4'/>}
-            <div className='text-lg text-primart'>
+            { icon && 
+              <img 
+                src={icon}
+                className='m-4'
+                style={{height: '1.5em'}}
+              />
+            }
+            { !withoutLabel &&
+              <div>
                 { children || label }
-            </div>
+              </div>
+            }
         </div>
     )
 }

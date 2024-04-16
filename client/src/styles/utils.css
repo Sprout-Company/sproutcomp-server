@@ -4,16 +4,35 @@
   border-left: solid currentcolor .5rem;
 }
 
+/**
+ * Backgrounds
+ */
 .bg-primary {
   background: var(--primary-bg);
+}
+.bg-primary-800 {
+  background: rgba(var(--primary-bg-rgb), .8);
 }
 .bg-body {
   background: var(--body-bg);
 }
 
+/**
+ * Text Color
+ */
 .text-primary {
   color: var(--primary-color);
 }
 .text-body {
   color: var(--body-color);
+}
+
+/**
+ * Font Size
+ */
+.text-xs {
+  font-size: .8rem;
+}
+.text-2xs {
+  font-size: .6rem;
 }

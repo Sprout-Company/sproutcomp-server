@@ -8,6 +8,8 @@ let socket;
  * Connect socket
  */
 export const connectSocket = () => {
+  if (socket) socket.disconnect();
+  
   socket = io('/');
   socket.on('connect', () => {
     console.log('Connected socket !');

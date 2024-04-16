@@ -2,18 +2,21 @@
 import { useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { FaArrowRight, FaUserPlus } from 'react-icons/fa'
+import { setTitle } from '../utils/title.js'
 
 import { UserContext } from '../ctx/User.jsx'
 import Navbar from '../shared/Navbar.jsx'
 import HeaderLogo from '../shared/HeaderLogo.jsx'
 import List from '../ui/List.jsx'
 
-  /**
+/**
  * Welcome page
  */
 export default function WelcomeView () {
   const userCtx = useContext(UserContext);
   const navigate = useNavigate();
+  
+  setTitle('🎯 Bienvenido/a | Sproutcomp');
   
   return (
     <div className='h-full flex flex-col'> 
@@ -26,8 +29,7 @@ export default function WelcomeView () {
         />
       </Navbar>
       
-      <div className='p-5 overflow-auto flex-grow'>
-        <List list={["HOLS", "BESTIIA"]}/>
+      <div className='p-5 overflow-auto flex-grow'> 
         <HeaderAndBody
           header='Has tus inversiones más entretenidas'
           body='

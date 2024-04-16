@@ -1,15 +1,27 @@
 
-export default function TextField ({placeholder, onInput, type, value, disabled, color}) {
+export default function TextField ({
+  placeholder,
+  label,
+  type,
+  value,
+  disabled, 
+  onInput, 
+}) {
     return (
-      <input 
-        className="px-2 py-1 bg-transparent text-primary border-current border-b-2 rounded w-full focus:outline-none"
+      <label className={`px-3 py-2 w-full flex items-center bg-primary-800 text-primary border-current border-b-2 rounded`}>
+        { label && 
+          <div className='mr-2'> {label} </div>
+        }
+        <input 
+          className={`w-full bg-transparent focus:outline-none`}
         
-        disabled={disabled}
-        type={type}
-        value={value} 
-        placeholder={placeholder}
+          disabled={disabled}
+          type={type}
+          value={value} 
+          placeholder={placeholder}
         
-        onInput={onInput}
-      />
+          onInput={onInput}
+        />
+      </label>
     );
 }

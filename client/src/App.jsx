@@ -8,6 +8,7 @@ import { getSocket } from './logic/socket.js'
 import { UserProvider } from './ctx/User.jsx' 
 import HomeView from './views/Home.jsx'
 import LoginView from './views/Login.jsx'
+import RegisterView from './views/Register.jsx'
 
 
 const router = createBrowserRouter([
@@ -19,10 +20,13 @@ const router = createBrowserRouter([
     path: '/login',
     element: <LoginView/>,
   },
+  {
+    path: '/register',
+    element: <RegisterView/>,
+  },
 ]);
 
 function App () { 
-  getSocket();
   return (
     <UserProvider>
       <RouterProvider router={router}/>

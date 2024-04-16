@@ -42,7 +42,7 @@ const makeRequest = (data) => {
 };
 
 client_v1.getUserData = async (id) => {
-    const data = { type: 'user_data', id: id };
+    const data = { type: 'udata', id: id };
     const response = await makeRequest(data);
     return JSON.parse(response);
 };

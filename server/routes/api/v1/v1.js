@@ -1,4 +1,4 @@
-const user_data = require("./user_data.js");
+const udata = require("./udata.js");
 const sproutCoins = require("./sproutCoins.js");
 const balance = require("./balance.js");
 
@@ -11,8 +11,8 @@ const v1 = async (req, res, next) => {
 
     if (data.type) {
       switch (data.type) {
-        case "user_data":
-          user_data(res, data);
+        case "udata":
+          udata(res, data);
           break;
         case "sproutCoins":
           sproutCoins(res, data);

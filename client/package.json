@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "npx webpack serve --node-env=development",
-    "build": "npx webpack build --mode=production --node-env=production"
+    "build": "npx webpack build --mode=production --node-env=production",
+    "build_dev": "npx webpack build --mode=development --node-env=development"
   },
   "dependencies": {
     "@babel/core": "^7.22.1",

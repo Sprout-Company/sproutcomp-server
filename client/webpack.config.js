@@ -51,12 +51,10 @@ module.exports = {
   resolve: {
     // alias imports
     alias: {
-      /*
       // for program in mobile :')
       'eruda': process.env.NODE_ENV === 'production' ?
         './src/utils/__eruda-fake.js': // remove eruda in production
         'eruda',
-      */
     },
     extensions: ['.*', '.js', '.jsx']
   },

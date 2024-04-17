@@ -19,6 +19,7 @@ const v1 = async (req, res, next) => {
           break;
         case "balance":
           balance(res, data);
+          break;
         default:
           res.status(200).json({ status: 'ERROR', message: 'NO_DATATYPE_FOUND' });
       }

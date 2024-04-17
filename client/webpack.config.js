@@ -1,5 +1,6 @@
 
 const { 
+  DIR,
   CLIENT_DIR,
   PORT: SERVER_PORT, 
   CLIENT_PORT,
@@ -53,7 +54,7 @@ module.exports = {
     alias: {
       // for program in mobile :')
       'eruda': process.env.NODE_ENV === 'production' ?
-        './src/utils/__eruda-fake.js': // remove eruda in production
+        DIR + '/client/src/utils/__eruda-fake.js': // remove eruda in production
         'eruda',
     },
     extensions: ['.*', '.js', '.jsx']

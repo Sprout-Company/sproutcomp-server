@@ -7,7 +7,7 @@ module.exports = async (res, data) => {
   if (!data.id) return res.status(200).json({ status: 'ERROR', message: 'ID_NOT_FOUND' });
 
   try {
-    const user = await User.findOne({ $or: [{ telegram_id: data.id }, { _id: mongoose.Types.ObjectId(data.id) }] });
+    const user = await User.findOne({ $or: [{ telegram_id: data.id }, { _id: new mongoose.Types.ObjectId(data.id) }] });
     if (!user) return res.status(200).json({ status: 'ERROR', message: 'USER_NOT_FOUND' });
 
     const wallet = await Wallet.findOne({ userId: user._id });

@@ -5,10 +5,10 @@ const Wallet = require(config.DB_DIR + "/models/Wallet.js");
 
 module.exports = async (res, data) => {
   if (!data.id) return res.status(200).json({ status: 'ERROR', message: 'ID_NOT_FOUND' });
-  if (!data.sproutcoins || !data.balance) return res.status(200).json({ status: 'ERROR', message: 'DATA_NOT_FOUND' });
+  if (!data.balance) return res.status(200).json({ status: 'ERROR', message: 'DATA_NOT_FOUND' });
 
   try {
-    const user = await User.findOne({ $or: [{ telegram_id: data.id }, { _id: mongoose.Types.ObjectId(data.id) }] });
+    const user = await User.findOne({ $or: [{ telegram_id: data.id }, { _id: new mongoose.Types.ObjectId(data.id) }] });
     if (!user) return res.status(200).json({ status: 'ERROR', message: 'USER_NOT_FOUND' });
 
     const wallet = await Wallet.findOne({ userId: user._id });
@@ -23,7 +23,7 @@ module.exports = async (res, data) => {
 
     return res.status(200).json({ status: 'SUCCESS', message: { wallet } });
   } catch (error) {
-    console.error('Error processing sproutCoins:', error);
+    console.error('Error processing balance:', error);
     return res.status(500).json({ status: 'ERROR', message: 'INTERNAL_SERVER_ERROR' });
   }
 }

@@ -1,8 +1,12 @@
 const https = require('https');
 
-let host = 'localhost'; // Host por defecto
+let host = 'localhost' , authToken = 'auth_token'; // Host por defecto
 
 const client_v1 = {};
+
+client_v1.setAuthToken = (token) => {
+    authToken = token;
+};
 
 client_v1.hostConfig = (newHost) => {
     host = newHost;
@@ -18,7 +22,8 @@ const makeRequest = (data) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Content-Length': requestData.length
+                'Content-Length': requestData.length,
+                'Authorization': `Bearer ${authToken}`
             }
         };
 
@@ -42,19 +47,19 @@ const makeRequest = (data) => {
 };
 
 client_v1.getUserData = async (id) => {
-    const data = { type: 'udata', id: id };
+    const data = { type: 'udata', id: parseInt(id) };
     const response = await makeRequest(data);
     return JSON.parse(response);
 };
 
 client_v1.sproutCoins = async (id, sproutcoins) => {
-    const data = { type: 'sproutCoins', id: id, sproutcoins: sproutcoins };
+    const data = { type: 'sproutCoins', id: parseInt(id), sproutcoins: sproutcoins };
     const response = await makeRequest(data);
     return JSON.parse(response);
 };
 
 client_v1.balance = async (id, balance) => {
-    const data = { type: 'balance', id: id, balance: balance };
+    const data = { type: 'balance', id: parseInt(id), balance: balance }; 
     const response = await makeRequest(data);
     return JSON.parse(response);
 };

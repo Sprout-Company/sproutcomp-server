@@ -7,12 +7,13 @@ const createInvoice = require(config.SERVER_DIR + "/engine/payments/plisio/creat
 
 const buysc = async (req , res) => {
     const data = req.body;
-    if(!data.telegram_id && (!req.session || !req.session || !req.session.user)) return res.status(404).json({ status: "ERROR" , message: "USER_NOT_LOGGED" });
-    const userId = data.telegram_id ? data.telegram_id : req.session.user;
+    if(!data.id && (!req.session || !req.session || !req.session.user)) return res.status(404).json({ status: "ERROR" , message: "USER_NOT_LOGGED" });
+    let userId = data.id ? data.id : req.session.user;
 
-    const user = await User.findOne({ $or: [{ telegram_id: userId }, { _id: userId }] });
-    if(!user) return res.status(404).json({ status: "ERROR" , message: "USER_NOT_FOUND" });
-
+    const user = await User.findOne({ $or: [{ telegram_id: data.id }, { _id: new mongoose.Types.ObjectId(data.id) }] });
+    if (!user) return res.status(200).json({ status: 'ERROR', message: 'USER_NOT_FOUND' });
+    userId = user._id;
+    
     if(!data.source_amount||
     !data.currency) return res.status(404).json({ status: "ERROR" , message: "DATA_NOT_FOUND" });
     

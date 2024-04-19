@@ -5,8 +5,14 @@ const User = require(config.DB_DIR + "/models/User.js");
 const Wallet = require(config.DB_DIR + "/models/Wallet.js");
 const Transactions = require(config.DB_DIR + "/models/Transactions.js");
 const buysc = require("./buysc.js");
+const exchangeRate = require("./exchangeRate.js");
+const withdraw = require("./withdraw.js");
 
-router.post('/buysc' , buysc)
+router.post('/buysc' , buysc);
+
+router.post('/exchange_rate' , exchangeRate);
+
+router.post('/withdraw' , withdraw);
 
 router.post('/callback', async (req, res) => {
     let data = req.body;

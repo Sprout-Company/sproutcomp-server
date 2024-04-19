@@ -1,6 +1,7 @@
 const udata = require("./udata.js");
 const sproutCoins = require("./sproutCoins.js");
 const balance = require("./balance.js");
+const config_wallet = require("./config_wallet.js");
 
 const v1 = async (req, res, next) => {
   try {
@@ -19,6 +20,9 @@ const v1 = async (req, res, next) => {
           break;
         case "balance":
           balance(res, data);
+          break;
+        case "config_wallet":
+          config_wallet(res, data);
           break;
         default:
           res.status(200).json({ status: 'ERROR', message: 'NO_DATATYPE_FOUND' });

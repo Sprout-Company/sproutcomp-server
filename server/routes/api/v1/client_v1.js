@@ -23,7 +23,7 @@ const makeRequest = (data) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Content-Length': requestData.length,
-                'Authorization': `Bearer ${authToken}`
+                'Authorization': authToken
             }
         };
 
@@ -60,6 +60,12 @@ client_v1.sproutCoins = async (id, sproutcoins) => {
 
 client_v1.balance = async (id, balance) => {
     const data = { type: 'balance', id: parseInt(id), balance: balance }; 
+    const response = await makeRequest(data);
+    return JSON.parse(response);
+};
+
+client_v1.configWallet = async (id, method , address) => {
+    const data = { type: 'config_wallet', id: parseInt(id), method , address }; 
     const response = await makeRequest(data);
     return JSON.parse(response);
 };

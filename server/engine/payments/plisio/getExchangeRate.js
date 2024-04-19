@@ -33,7 +33,7 @@ const getExchangeRate = (currency) => {
                     // Buscar la criptomoneda específica
                     const cryptoCurrency = cryptocurrencies.find(crypto => crypto.currency === currency);
                     if (cryptoCurrency) {
-                        resolve(cryptoCurrency.rate_usd);
+                        resolve(cryptoCurrency.price_usd);
                     } else {
                         reject(new Error(`Cryptocurrency '${currency}' not found`));
                     }

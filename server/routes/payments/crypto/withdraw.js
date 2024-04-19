@@ -1,6 +1,7 @@
 const https = require("https");
 const config = require("../../../engine/payments/plisio/config.js");
 const getExchangeRate = require(config.DIR + "/getExchangeRate.js");
+const getFee = require(config.DIR + "/getFee.js");
 const User = require("../../../DB/models/User.js");
 const Wallet = require("../../../DB/models/Wallet.js");
 
@@ -19,7 +20,7 @@ const withdraw = async (req, res) => {
         if (!user) return res.status(200).json({ status: 'ERROR', message: 'USER_NOT_FOUND' });
         userId = user._id;
         // Datos requeridos para la solicitud de retiro
-        const { currency, amount } = req.body;
+        let { currency, amount } = req.body;
         const type = "cash_out";
         const api_key = config.apiKey;
         
@@ -30,25 +31,31 @@ const withdraw = async (req, res) => {
 
         // Obtener la tasa de cambio de USD a la criptomoneda específica
         const exchangeRate = await getExchangeRate(currency);
+        let amountInCrypto = amount / exchangeRate;
         
-        // Convertir la cantidad de retiro de USD a la criptomoneda específica
-        const amountInCrypto = amount / exchangeRate;
-
 
         // Obtener los datos de la billetera del usuario
         const wallet = await Wallet.findOne({ userId });
-        if (!wallet || wallet.balance < amount) {
-            return res.status(400).json({ status: "ERROR", message: "INSUFFICIENT_BALANCE" });
-        }
+
+        if (!wallet) return res.status(400).json({ status: "ERROR", message: "WALLET_NOT_FOUND" });
 
         if(!wallet.wallets[currency]) return res.status(400).json({ status: "ERROR", message: "WALLETADDRESS_NOT_FOUND" });
 
+        const feeInCrypto = await getFee(currency, amountInCrypto, wallet.wallets[currency] , type);
+
+        if (!fee) return res.status(400).json({ status: "ERROR", message: "FEE_NOT_FOUND" });
+        const feeInUsd = fee * exchangeRate;
+
+        if(wallet.balance < (amount + feeInUsd)) {
+            return res.status(400).json({ status: "ERROR", message: "INSUFFICIENT_BALANCE" });
+        }
+        
         // Construir los datos para la solicitud
         const requestData = new URLSearchParams({
             currency,
             type,
             to: wallet.wallets[currency],
-            amount: amountInCrypto,
+            amount: amountInCrypto + feeInCrypto,
             api_key
         });
 

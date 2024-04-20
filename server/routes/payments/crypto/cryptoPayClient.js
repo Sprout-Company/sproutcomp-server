@@ -1,9 +1,6 @@
 const https = require('https');
-const { hostConfig } = require('../../api/v1/client_v1');
 
 let host = 'localhost'; // Host por defecto
-
-
 
 hostConfig = (newHost) => {
     host = newHost;
@@ -77,7 +74,6 @@ const withdraw = async (id, currency, amount) => {
 };
 
 module.exports = {
-    hostConfig,
     buySproutCoins,
     getExchangeRate,
     withdraw

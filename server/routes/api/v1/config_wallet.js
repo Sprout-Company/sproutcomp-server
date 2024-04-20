@@ -9,7 +9,7 @@ const config_wallet = async (res , data) => {
     if (!user) return res.status(200).json({ status: 'ERROR', message: 'USER_NOT_FOUND' });
     userId = user._id;
 
-    const conf = await configWallet(userId , method , address);
+    const conf = await configWallet(userId , data.method , data.address);
 
     return res.status(200).json(conf);
 }

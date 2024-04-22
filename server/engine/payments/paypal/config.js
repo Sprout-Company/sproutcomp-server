@@ -8,6 +8,8 @@ module.exports = {
     default_fiat_currency: "USD",
     DIR: __dirname,
     mode: mode , 
+    returnUrl: config.URL + "/payments/paypal/success",
+    cancelUrl: config.URL + "/payments/paypal/error",
     client_id: mode == "sandbox" ? process.env.PAYPAL_SANDBOX_API_KEY : process.env.PAYPAL_API_KEY,
     client_secret: mode == "sandbox" ? process.env.PAYPAL_SANDBOX_API_SECRET : process.env.PAYPAL_API_SECRET
 };

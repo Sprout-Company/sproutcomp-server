@@ -17,6 +17,8 @@ const config = {
     DB_URI: `mongodb+srv://sproutcompadmin:${process.env.MONGODB_PASS}@cluster0.a4uysju.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`,
     DB_SESSIONS_URI: `mongodb+srv://sproutcompadmin:${process.env.MONGODB_PASS}@sproutcomprespald.0dazklo.mongodb.net/?retryWrites=true&w=majority&appName=SproutCompRespald`,
     
+    SC_USD_RATE: 0.01,
+
     PORT: process.env.PORT || 3000,
     CLIENT_PORT: 3001,
 };

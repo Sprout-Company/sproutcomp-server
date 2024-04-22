@@ -11,7 +11,7 @@ const requestServerAPI = async (path, postData) => {
     return new Promise((resolve, reject) => {
         const data = querystring.stringify(postData);
         const options = {
-            hostname: host, // Reemplaza 'tu-servidor.com' con tu propio dominio
+            hostname: host, 
             port: 443,
             path: '/payments/crypto/' + path,
             method: 'POST',

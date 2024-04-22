@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const config = require("../../../../config.js");
 const plisioConfig = require(config.SERVER_DIR + "/engine/payments/plisio/config.js");
 const User = require(config.DB_DIR + "/models/User.js");
@@ -27,7 +28,7 @@ const buysc = async (req , res) => {
         order_number: count + 1,
         currency: data.currency,
         email: user.email ? user.email : 'customer@plisio.net',
-        order_name: 'Buy SproutCoins x' + data.source_amount * 100
+        order_name: 'Buy  x' + data.source_amount / config.SC_USD_RATE + ' SproutCoinsS'
     };
     try {
         // Llamar a la función para crear la factura
@@ -37,7 +38,7 @@ const buysc = async (req , res) => {
         const newTransaction = new Transactions({
             userId: user._id,
             transactionId: _data.txn_id,
-            sproutcoins: data.source_amount * 100,
+            sproutcoins: data.source_amount / config.SC_USD_RATE,
             amount: params.amount,
             currency: params.currency,
             userEmail: params.userEmail,

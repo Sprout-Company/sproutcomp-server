@@ -1,5 +1,6 @@
 const paypal = require('paypal-rest-sdk');
-const config = require('./config'); // Archivo de configuración con tus credenciales de PayPal
+const config = require('./config.js'); // Archivo de configuración con tus credenciales de PayPal
+const {SC_USD_RATE} = require('../../../../config.js');
 
 paypal.configure({
     mode: config.paypal.mode,
@@ -8,7 +9,7 @@ paypal.configure({
 });
 
 // Función para crear una orden de pago
-const createOrder = async (amount, description) => {
+const createOrder = async (amount) => {
     const create_order_json = {
         intent: 'CAPTURE',
         purchase_units: [{
@@ -16,7 +17,7 @@ const createOrder = async (amount, description) => {
                 currency_code: config.default_fiat_currency,
                 value: amount
             },
-            description: description
+            description: `Buy x${amount / SC_USD_RATE} SproutCoins.`
         }],
         application_context: {
             return_url: config.returnUrl,

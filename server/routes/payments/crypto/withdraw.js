@@ -1,4 +1,5 @@
 const https = require("https");
+const mongoose = require("mongoose");
 const config = require("../../../engine/payments/plisio/config.js");
 const getExchangeRate = require(config.DIR + "/getExchangeRate.js");
 const getFee = require(config.DIR + "/getFee.js");

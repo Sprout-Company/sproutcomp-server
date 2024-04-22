@@ -50,6 +50,9 @@ passport.deserializeUser(async function (id, done) {
 //Enrutamiento
 app.use(router);
 
+//Payments - Limpieza de Transacciones 
+require("./engine/payments/clearTransactions.js");
+
 
 // Serve website routes
 app.use(express.static(config.CLIENT_DIR));

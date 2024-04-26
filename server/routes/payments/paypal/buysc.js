@@ -26,7 +26,7 @@ const buysc = async (req, res) => {
                 userId: user._id,
                 transactionId: order.id,
                 sproutcoins: data.source_amount / config.SC_USD_RATE,
-                amount: amount,
+                amount: data.source_amount,
                 currency: "PAYPAL_USD",
                 userEmail: user.email ? user.email : "admin@paypal1.com",
             });

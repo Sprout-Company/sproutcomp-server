@@ -52,16 +52,34 @@ client_v1.getUserData = async (id) => {
     return JSON.parse(response);
 };
 
-client_v1.sproutCoins = async (id, sproutcoins) => {
-    const data = { type: 'sproutCoins', id: parseInt(id), sproutcoins: sproutcoins };
-    const response = await makeRequest(data);
-    return JSON.parse(response);
+client_v1.sproutCoins = (id) => {
+    return {
+        add: async (amount) => {
+            const data = { type: 'sproutCoins', id: parseInt(id), sproutcoins: amount };
+            const response = await makeRequest(data);
+            return JSON.parse(response);
+        },
+        rest: async (amount) => {
+            const data = { type: 'sproutCoins', id: parseInt(id), sproutcoins: -amount };
+            const response = await makeRequest(data);
+            return JSON.parse(response);
+        }
+    };
 };
 
-client_v1.balance = async (id, balance) => {
-    const data = { type: 'balance', id: parseInt(id), balance: balance }; 
-    const response = await makeRequest(data);
-    return JSON.parse(response);
+client_v1.balance = (id) => {
+    return {
+        add: async (amount) => {
+            const data = { type: 'balance', id: parseInt(id), balance: amount };
+            const response = await makeRequest(data);
+            return JSON.parse(response);
+        },
+        rest: async (amount) => {
+            const data = { type: 'balance', id: parseInt(id), balance: -amount };
+            const response = await makeRequest(data);
+            return JSON.parse(response);
+        }
+    };
 };
 
 client_v1.configWallet = async (id, method , address) => {

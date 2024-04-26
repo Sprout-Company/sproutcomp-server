@@ -3,9 +3,9 @@ const config = require('./config.js'); // Archivo de configuración con tus cred
 const {SC_USD_RATE} = require('../../../../config.js');
 
 paypal.configure({
-    mode: config.paypal.mode,
-    client_id: config.paypal.client_id,
-    client_secret: config.paypal.client_secret
+    mode: config.mode,
+    client_id: config.client_id,
+    client_secret: config.client_secret
 });
 
 // Función para crear una orden de pago

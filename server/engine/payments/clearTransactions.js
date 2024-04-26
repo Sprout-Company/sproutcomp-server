@@ -1,4 +1,4 @@
-const Transactions = require('../models/Transactions');
+const Transactions = require('../../DB/models/Transactions.js');
 
 // Función para limpiar transacciones no pagadas después de una hora
 const cleanUnpaidTransactions = async () => {

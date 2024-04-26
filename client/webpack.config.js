@@ -4,6 +4,7 @@ const {
   CLIENT_DIR,
   PORT: SERVER_PORT, 
   CLIENT_PORT,
+  URL,
 } = require('../config.js');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -36,8 +37,8 @@ module.exports = {
           '/api', 
           '/auth'
         ],
-        target: 'http://localhost:' + SERVER_PORT,
-        secure: false,
+        target: URL,//'http://localhost:' + SERVER_PORT,
+        secure: true,
       }
     ]
   },

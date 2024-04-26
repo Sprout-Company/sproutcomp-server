@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { setTitle } from '../utils/title.js'
+import cx from 'classix'
 
 import {
   FaAt, 
@@ -79,9 +80,13 @@ export default function RegisterView () {
             />
           </div>
           
-          {/* Password repeat field */}
-          { formData.pass &&
-            <div className='my-1 relative flex items-center w-full'> 
+          {/* Password repeat field */} 
+          <div 
+            className={cx(
+              'my-1 relative flex items-center w-full',
+              !formData.pass && 'hidden'
+            )}
+          > 
               <TextField 
                 type={rpassVisible ? 'text' : 'password'}
                 label={<FaKey/>} 
@@ -97,8 +102,7 @@ export default function RegisterView () {
                   setRpassVisible(v => !v);
                 }}
               />
-            </div>
-          }
+          </div> 
           
           {/* Submit */}
           <AuthButton 

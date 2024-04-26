@@ -9,7 +9,7 @@ import './styles/font.css'
 import './styles/utils.css' 
 import './styles/animations.css' 
 
-import App from  './App.jsx'
+import App from './App.jsx'
 
 // browser console in development mode
 eruda.init();

@@ -6,6 +6,7 @@ import {
   FaArrowRight, 
   FaUser,
   FaInfo,
+  FaDollarSign,
   FaSignOutAlt,
 } from 'react-icons/fa'
 
@@ -58,7 +59,8 @@ export default function HomeView () {
                 <div className='mr-2 text-body flex flex-col items-end'>
                   <p> example_user </p>
                   <p className='text-sm underline'> 
-                    <span className='text-red-900'> SC:</span> 0 </p> 
+                    <span className='text-red-900'> SC:</span> 0 
+                  </p> 
                 </div>
                 <div 
                   className='text-4xl self-end text-xl rounded-3xl border border-2 border-current p-2'
@@ -68,6 +70,7 @@ export default function HomeView () {
               <List
                 list={[
                   [<FaUser/>, 'Perfil'],
+                  [<FaDollarSign/>, 'Más SproutCoins'],
                   [<FaInfo/>, 'Sobre nosotros...'],
                   [<FaSignOutAlt/>, 'Cerrar sesión'],
                 ]}

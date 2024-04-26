@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { setTitle } from '../utils/title.js'
+import cx from 'classix'
 
 import { 
   FaAt,
@@ -26,6 +27,32 @@ export default function LoginView () {
   const [formData, setFormData] = useState({ email: '', pass: '' });
   
   setTitle('Sproutcomp | Acceder');
+  
+  /**
+   * Submit login data
+   */
+  const submitLogin = async () => {
+    const response = await fetch('/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: formData.email,
+        password: formData.pass,
+      }),
+    });
+    
+    if (response.status !== 200) {
+      // [TODO] handle status error here...
+      console.log(response.status)
+      return;
+    }
+    
+    const data = await response.json();
+    
+    console.log(data);
+  }
   
   return (
     <div 
@@ -56,8 +83,12 @@ export default function LoginView () {
           </div>
           
           {/* Password field */}
-          { formData.email && 
-            <div className='my-1 relative flex items-center w-full'> 
+          <div 
+            className={cx(
+              'my-1 relative flex items-center w-full',
+              !formData.email && 'hidden'
+            )}
+          > 
               <TextField 
                 type={passVisible ? 'text' : 'password'}
                 label={<FaKey/>} 
@@ -70,12 +101,11 @@ export default function LoginView () {
                 children={!passVisible ? <FaEye/> : <FaEyeSlash/> }
                 onClick={() => setPassVisible(v => !v)}
               />
-            </div> 
-          } 
+          </div>
+          
           {/* Submit */}
-          { formData.email &&
-            <AuthButton
-              className='self-end'
+          <AuthButton
+              className={cx('self-end', !formData.email && 'hidden')}
               children={
                 <div className='flex items-center'>
                   <FaSignInAlt/> 
@@ -84,11 +114,8 @@ export default function LoginView () {
                   </span> 
                 </div> 
               }
-              onClick={() => {
-                alert('[TODO] Submit');
-              }}
-            />
-          }
+              onClick={submitLogin}
+          /> 
         </div>
         
         <div 

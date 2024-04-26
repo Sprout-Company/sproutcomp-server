@@ -88,4 +88,10 @@ client_v1.configWallet = async (id, method , address) => {
     return JSON.parse(response);
 };
 
+client_v1.changeLang = async (id, lang) => {
+    const data = { type: 'lang', lang }; 
+    const response = await makeRequest(data);
+    return JSON.parse(response);
+};
+
 module.exports = client_v1;

@@ -18,6 +18,7 @@ const config = {
     DB_SESSIONS_URI: `mongodb+srv://sproutcompadmin:${process.env.MONGODB_PASS}@sproutcomprespald.0dazklo.mongodb.net/?retryWrites=true&w=majority&appName=SproutCompRespald`,
     
     SC_USD_RATE: 0.01,
+    LANGS: ["en" , "es"],
 
     PORT: process.env.PORT || 3000,
     CLIENT_PORT: 3001,

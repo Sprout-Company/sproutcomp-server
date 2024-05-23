@@ -1,9 +1,9 @@
 
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'wouter'
 import { FaDice } from 'react-icons/fa'
 
-export default function HeaderLogo ({ className, redirect }) {
-  const navigate = useNavigate(); 
+export function HeaderLogo ({ className, redirect }) {
+  const [,navigate] = useLocation(); 
   
   return (
     <div 

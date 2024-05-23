@@ -1,11 +1,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import List from './List.jsx'
+import { List } from '@/ui'
 
 import './FloatingMenu.css'
 
-export default function FloatingMenu ({
+export function FloatingMenu ({
   list,
   children,
   show, 

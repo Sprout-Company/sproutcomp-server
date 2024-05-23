@@ -1,7 +1,6 @@
 
 .animate-point-right {
   animation: point-right .5s ease infinite alternate;
-  
 }
 
 @keyframes point-right {

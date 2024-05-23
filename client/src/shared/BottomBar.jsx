@@ -1,5 +1,5 @@
 
-export default function BottomBar ({children}) {
+export function BottomBar ({children}) {
   return (
     <div
       className='

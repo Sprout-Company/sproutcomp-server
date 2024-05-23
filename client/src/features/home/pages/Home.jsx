@@ -1,7 +1,9 @@
 
-import { useState, useRef, useContext } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { setTitle } from '../utils/title.js'
+import { useState, useRef } from 'react'
+import { useLocation, Link} from 'wouter'
+
+import { useUserStore } from '@/stores'
+import { setTitle } from '@/utils'
 import { 
   FaArrowRight, 
   FaUser,
@@ -9,29 +11,28 @@ import {
   FaDollarSign,
   FaSignOutAlt,
 } from 'react-icons/fa'
-
-import { UserContext } from '../ctx/User.jsx'
-
-import WelcomeView from './Welcome.jsx'
-import List from '../ui/List.jsx'
-import FloatingMenu from '../ui/FloatingMenu.jsx'
-import Navbar from '../shared/Navbar.jsx'
-import HeaderLogo from '../shared/HeaderLogo.jsx'
+ 
+import {
+  List,
+  FloatingMenu,
+} from '@/ui'
+import { WelcomePage } from './Welcome.jsx'
+import { HeaderLogo, Navbar } from '@/shared'
 
 /**
  * Home page
  */
-export default function HomeView () {
-  const userCtx = useContext(UserContext);
-  const navigate = useNavigate();
+export function HomePage () {
+  const userName = useUserStore(s => s.name);
+  const [,navigate] = useLocation();
   const profileBtnRef = useRef(null);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
  
   setTitle('Sproutcomp | Pagina Principal');
   
   // is logged ?
-  if (!userCtx.name) {
-    return <WelcomeView />
+  if (!userName) {
+    return <WelcomePage />
   }
   
   return (
@@ -82,7 +83,7 @@ export default function HomeView () {
       
       {/* body */}
       <div className='p-5 overflow-auto flex-grow'>
-        [Home View]
+        [Home Page]
       </div>
     </div>
   )

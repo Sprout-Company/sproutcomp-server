@@ -6,6 +6,7 @@ const {
   CLIENT_PORT,
   URL,
 } = require('../config.js');
+const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -27,9 +28,8 @@ module.exports = {
     port: CLIENT_PORT,
     compress: true,
     hot: true,
-    open: true,
     liveReload: true,
-    historyApiFallback: true,
+    historyApiFallback: true, 
     proxy: [
       {
         context: [
@@ -37,10 +37,13 @@ module.exports = {
           '/api', 
           '/auth'
         ],
-        target: URL,//'http://localhost:' + SERVER_PORT,
-        secure: true,
+        target: 'http://localhost:' + SERVER_PORT,
+        headers: {
+          'Host': URL,
+        },
+        changeOrigin: true,
       }
-    ]
+    ],
   },
 
   // html export
@@ -53,6 +56,8 @@ module.exports = {
   resolve: {
     // alias imports
     alias: {
+      '@': DIR + '/client/src',
+      
       // for program in mobile :')
       'eruda': process.env.NODE_ENV === 'production' ?
         DIR + '/client/src/utils/__eruda-fake.js': // remove eruda in production

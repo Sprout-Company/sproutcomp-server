@@ -1,20 +1,22 @@
 
-import { useContext } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useLocation, Link } from 'wouter'
+import { useUserStore } from '@/stores'
 import { FaArrowRight, FaUserPlus } from 'react-icons/fa'
-import { setTitle } from '../utils/title.js'
 
-import { UserContext } from '../ctx/User.jsx'
-import Navbar from '../shared/Navbar.jsx'
-import HeaderLogo from '../shared/HeaderLogo.jsx'
-import List from '../ui/List.jsx'
+import { setTitle } from '@/utils'
+import {
+  Navbar, 
+  HeaderLogo
+} from '@/shared'
+
+import { List } from '@/ui'
 
 /**
  * Welcome page
  */
-export default function WelcomeView () {
-  const userCtx = useContext(UserContext);
-  const navigate = useNavigate();
+export function WelcomePage () {
+  const userName = useUserStore(s => s.name);
+  const [,navigate] = useLocation();
   
   setTitle('🎯 Bienvenido/a | Sproutcomp');
   

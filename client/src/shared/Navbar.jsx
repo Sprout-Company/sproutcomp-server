@@ -1,5 +1,5 @@
 
-export default function Navbar ({className, children}) {
+export function Navbar ({className, children}) {
   return (
     <div
       className={`
